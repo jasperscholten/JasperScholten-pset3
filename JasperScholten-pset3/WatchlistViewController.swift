@@ -13,19 +13,30 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var watchlistTable: UITableView!
     
     // get everything from JSON
+    var movieInfo = [String: AnyObject]()
     
-    let movies = ["Inception", "Star Wars", "Up", "Inside Out"]
-    let plots = [
-        "Inception": "Dreams within dreams",
-        "Star Wars": "Spaceships",
-        "Up": "House with balloons",
-        "Inside Out": "Talking emotions"
-    ]
+    var movieJsons = [[String: AnyObject]]()
+    var movies = [String]()
+    var years = [String : String]()
     
     // images
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var movieName = movieInfo["Title"] as? String
+        var movieYear = movieInfo["Year"] as? String
+        
+        print(movieName)
+        
+        if movieName != nil {
+            movieJsons.append(movieInfo)
+            movies.append(movieName!)
+            years[movieName!] = movieYear!
+            
+            print("watchlist")
+            print(movieInfo)
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -45,8 +56,8 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         cell.movieTitle.text = movies[indexPath.row]
         
-        if let plot = plots[movies[indexPath.row]] {
-            cell.movieSubtitle.text = plot
+        if let year = years[movies[indexPath.row]] {
+            cell.movieSubtitle.text = year
         } else {
             cell.movieSubtitle.text = "" 
         }
@@ -54,15 +65,5 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

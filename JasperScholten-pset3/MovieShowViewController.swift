@@ -10,30 +10,39 @@ import UIKit
 
 class MovieShowViewController: UIViewController {
 
-    var movieInfo: String?
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var director: UILabel!
+    @IBOutlet weak var actors: UITextView!
+    @IBOutlet weak var plot: UITextView!
+    @IBOutlet weak var moviePoster: UIImageView!
+    var movieInfo = [String: AnyObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("test")
-        print(movieInfo!)
+        movieTitle.text = movieInfo["Title"] as? String
+        year.text = movieInfo["Year"] as? String
+        director.text = movieInfo["Director"] as? String
+        actors.text = movieInfo["Actors"] as? String
+        plot.text = movieInfo["Plot"] as? String
+        print(movieInfo["Plot"]!)
+        print(movieInfo["Actors"]!)
     }
 
+    @IBAction func addToList(_ sender: Any) {
+        print("ADDED")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let addMovie = segue.destination as? WatchlistViewController {
+            addMovie.movieInfo = movieInfo
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

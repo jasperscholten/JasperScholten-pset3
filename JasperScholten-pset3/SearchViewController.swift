@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var movieInput: UITextField!
     
-    var moviePlot = ""
+    var movieInfo = [String: AnyObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +30,18 @@ class SearchViewController: UIViewController {
         // http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
         
         // bij tweede query: SO_NOAPNFALLBK failed: [42] Protocol not available, dumping backtrace
-        // enum HTTPError
         
-        let url = URL(string: "https://www.omdbapi.com/?t=" + movieInput.text! + "&y=&plot=full&r=json")
+        let movie = movieInput.text!
+        let search = String(movie.characters.map {
+            $0 == " " ? "+" : $0
+        })
+        let url = URL(string: "https://www.omdbapi.com/?t=" + search + "&y=&plot=full&r=json")
 
+        print(url!)
         
         if url == nil {
             print("Empty string")
+            // self.movieInfo = info not found
         } else {
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard error == nil else {
@@ -51,40 +56,24 @@ class SearchViewController: UIViewController {
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:AnyObject]
                 
                 if json["Error"] != nil {
+                    // alert error
                     print(json["Error"]!)
                 } else {
-                    // print(json)
-                    // print(json["Plot"]!)
-                    
-                    self.moviePlot = json["Plot"] as! String
-                    
-                    // DispatchQueue.main.async {
-                    //     self.label.text = json.value(forKey: "imd]bRating") as! String?
-                    // }
-                    
-                    // do it again to retrieve the poster - be smart
-                    
+
+                    DispatchQueue.main.async {
+                        self.movieInfo = json
+                        self.performSegue(withIdentifier: "showSearch", sender: nil)
+                    }
                 }
             }
             task.resume()
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let showMovie = segue.destination as? MovieShowViewController {
-            showMovie.movieInfo = self.moviePlot
+            showMovie.movieInfo = movieInfo
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
