@@ -272,13 +272,17 @@
                                 <rect key="frame" x="16" y="72" width="343" height="529"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cOW-mk-k5i">
-                                        <rect key="frame" x="0.0" y="0.0" width="178" height="185"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="190"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tCz-Vo-S3b">
-                                                <rect key="frame" x="0.0" y="0.0" width="121" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="JdE-yK-Jdl"/>
+                                                    <constraint firstAttribute="height" constant="190" id="fbj-jJ-gNz"/>
+                                                </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zNy-JT-isu">
-                                                <rect key="frame" x="129" y="0.0" width="49" height="65"/>
+                                                <rect key="frame" x="158" y="0.0" width="49" height="65"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJF-No-s8P">
                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="24"/>
@@ -303,7 +307,7 @@
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Actors" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BcO-rz-JXc">
-                                        <rect key="frame" x="0.0" y="185" width="343" height="50"/>
+                                        <rect key="frame" x="0.0" y="190" width="343" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="48L-od-fL2"/>
@@ -312,7 +316,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Plot" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ObY-Hk-T0G">
-                                        <rect key="frame" x="0.0" y="235" width="343" height="294"/>
+                                        <rect key="frame" x="0.0" y="240" width="343" height="289"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

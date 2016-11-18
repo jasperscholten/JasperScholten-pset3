@@ -14,31 +14,47 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
     
     // get everything from JSON
     var movieInfo = [String: AnyObject]()
-    
-    var movieJsons = [[String: AnyObject]]()
     var movies = [String]()
     var years = [String : String]()
+    var posters = [String: UIImage]()
     
-    // images
+    func storeMovie() {
+        let defaults = UserDefaults.standard
+        
+        let movieName = movieInfo["Title"] as? String
+        let movieYear = movieInfo["Year"] as? String
+        let movieImage = movieInfo["Poster"] as? UIImage
+        
+        
+        defaults.set(movieName, forKey: "movie")
+        defaults.set(movieYear, forKey: "year")
+        // defaults.set(movieImage, forKey: "poster")
+        defaults.synchronize()
+        
+        print("store \(movieName)")
+    }
+    
+    func readMovie() {
+        let defaults = UserDefaults.standard
+        let nameStored = defaults.string(forKey: "movie")
+        let yearStored = defaults.string(forKey: "year")
+        // let imageStored = defaults.object(forKey: "poster")
+        print("read \(nameStored)")
+        
+        
+        movies.append(nameStored!)
+        years[nameStored!] = yearStored!
+        // posters[nameStored!] = imageStored
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var movieName = movieInfo["Title"] as? String
-        var movieYear = movieInfo["Year"] as? String
-        
-        print(movieName)
-        
-        if movieName != nil {
-            movieJsons.append(movieInfo)
-            movies.append(movieName!)
-            years[movieName!] = movieYear!
-            
-            print("watchlist")
-            print(movieInfo)
+        if movieInfo["Title"] != nil{
+            storeMovie()
         }
-
-        // Do any additional setup after loading the view.
+        
+        readMovie()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +71,7 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = watchlistTable.dequeueReusableCell(withIdentifier: "watchlistCell", for: indexPath) as! WatchListMovie
         
         cell.movieTitle.text = movies[indexPath.row]
+        cell.moviePoster.image = posters[movies[indexPath.row]]
         
         if let year = years[movies[indexPath.row]] {
             cell.movieSubtitle.text = year

@@ -18,17 +18,39 @@ class MovieShowViewController: UIViewController {
     @IBOutlet weak var moviePoster: UIImageView!
     var movieInfo = [String: AnyObject]()
     
+    // http://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() { () -> Void in
+                self.moviePoster.image = UIImage(data: data)
+                self.movieInfo["Poster"] = UIImage(data: data)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         movieTitle.text = movieInfo["Title"] as? String
         year.text = movieInfo["Year"] as? String
         director.text = movieInfo["Director"] as? String
         actors.text = movieInfo["Actors"] as? String
         plot.text = movieInfo["Plot"] as? String
-        print(movieInfo["Plot"]!)
-        print(movieInfo["Actors"]!)
+        let movieUrl = movieInfo["Poster"] as? String
+        
+        // http://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
+        if let checkedUrl = URL(string: movieUrl!) {
+            moviePoster.contentMode = .scaleAspectFit
+            downloadImage(url: checkedUrl)
+        }
     }
 
     @IBAction func addToList(_ sender: Any) {
