@@ -23,8 +23,10 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         
         let movieName = movieInfo["Title"] as? String
         let movieYear = movieInfo["Year"] as? String
-        let movieImage = movieInfo["Poster"] as? UIImage
+        // let movieImage = movieInfo["Poster"] as? UIImage
         
+        // movies.append(movieName)
+        // should append movie to array of movies, so we can access that array through the function readMovie and subsequently display it in the Watchlist. At this moment, we delete the saved settings and set it to a new value.
         
         defaults.set(movieName, forKey: "movie")
         defaults.set(movieYear, forKey: "year")
@@ -41,14 +43,16 @@ class WatchlistViewController: UIViewController, UITableViewDataSource, UITableV
         // let imageStored = defaults.object(forKey: "poster")
         print("read \(nameStored)")
         
-        
-        movies.append(nameStored!)
-        years[nameStored!] = yearStored!
-        // posters[nameStored!] = imageStored
+        if nameStored != nil {
+            movies.append(nameStored!)
+            years[nameStored!] = yearStored!
+            // posters[nameStored!] = imageStored
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         if movieInfo["Title"] != nil{
             storeMovie()
