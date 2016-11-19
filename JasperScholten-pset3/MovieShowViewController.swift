@@ -39,6 +39,8 @@ class MovieShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(movieInfo)
+        
         movieTitle.text = movieInfo["Title"] as? String
         year.text = movieInfo["Year"] as? String
         director.text = movieInfo["Director"] as? String
@@ -54,6 +56,7 @@ class MovieShowViewController: UIViewController {
     }
 
     @IBAction func addToList(_ sender: Any) {
+        // Possibly appending movieInfo to userdefault array here?
         print("ADDED")
     }
     
