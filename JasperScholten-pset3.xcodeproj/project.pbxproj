@@ -16,6 +16,7 @@
 		A4D074081DDB5AB1008F5D86 /* WatchListMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D074071DDB5AB1008F5D86 /* WatchListMovie.swift */; };
 		A4D0740A1DDB5C81008F5D86 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D074091DDB5C81008F5D86 /* WatchlistViewController.swift */; };
 		A4D0740C1DDE3CAC008F5D86 /* MovieShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0740B1DDE3CAC008F5D86 /* MovieShowViewController.swift */; };
+		A4D074121DE0E936008F5D86 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A4D074111DE0E936008F5D86 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A4D074071DDB5AB1008F5D86 /* WatchListMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchListMovie.swift; sourceTree = "<group>"; };
 		A4D074091DDB5C81008F5D86 /* WatchlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
 		A4D0740B1DDE3CAC008F5D86 /* MovieShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieShowViewController.swift; sourceTree = "<group>"; };
+		A4D074111DE0E936008F5D86 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		A4D073E31DDB1DEF008F5D86 = {
 			isa = PBXGroup;
 			children = (
+				A4D074111DE0E936008F5D86 /* README.md */,
 				A4D073EE1DDB1DEF008F5D86 /* JasperScholten-pset3 */,
 				A4D073ED1DDB1DEF008F5D86 /* Products */,
 			);
@@ -152,6 +155,7 @@
 				A4D0740C1DDE3CAC008F5D86 /* MovieShowViewController.swift in Sources */,
 				A4D074061DDB4B92008F5D86 /* SearchViewController.swift in Sources */,
 				A4D0740A1DDB5C81008F5D86 /* WatchlistViewController.swift in Sources */,
+				A4D074121DE0E936008F5D86 /* README.md in Sources */,
 				A4D073F21DDB1DEF008F5D86 /* ViewController.swift in Sources */,
 				A4D074081DDB5AB1008F5D86 /* WatchListMovie.swift in Sources */,
 				A4D073F01DDB1DEF008F5D86 /* AppDelegate.swift in Sources */,
